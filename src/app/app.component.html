@@ -1,0 +1,54 @@
+<app-header/>
+
+<main>
+  
+  <!--  
+    <ul id="users">
+      @for (user of users; track user.id)  {
+    <li>
+      <app-user [user]="user" (select)="onSelectUser($event)" />
+    </li>
+  }
+</ul>
+<app-taskcomponent [parentData]="selectedUser ? selectedUser.name:''"></app-taskcomponent>
+</main> -->
+
+<ul id="users">
+  <li *ngFor="let user of users; let i=index">
+  <app-user [id]="user.id" [selected]="user.id === parentData" [avatar]="user.avatar" [name]="user.name" (select)="onSelectUser($event)" />
+</li>
+</ul>
+  <ng-container *ngIf="selectedUser && selectedUser.name; else noData">
+    <app-taskcomponent [userId]="selectedUser.id" [parentData]="selectedUser.name"></app-taskcomponent>
+  </ng-container>
+  <ng-template #noData>
+    <p>Select a user to see their Task!</p>
+</ng-template>
+<!-- <app-taskcomponent *ngIf="selectedUser && selectedUser.name; else noData"
+  [parentData]="selectedUser.name"></app-taskcomponent>
+<ng-template #noData>
+  <p>Select a user to see their Task!</p>
+</ng-template> -->
+
+<!-- 
+<ul id="users">
+
+<li>
+  <app-user [id]="users[0].id" [avatar]="users[0].avatar" [name]="users[0].name" (select)="onSelectUser($event)"/>
+</li>
+<li>
+  <app-user [id]="users[1].id" [avatar]="users[1].avatar" [name]="users[1].name" (select)="onSelectUser($event)"/>
+</li>
+<li>
+  <app-user [id]="users[2].id" [avatar]="users[2].avatar" [name]="users[2].name" (select)="onSelectUser($event)"/>
+</li>
+<li>
+  <app-user [id]="users[3].id" [avatar]="users[3].avatar" [name]="users[3].name"  (select)="onSelectUser($event)"/>
+</li>
+<li>
+  <app-user [id]="users[4].id" [avatar]="users[4].avatar" [name]="users[4].name"  (select)="onSelectUser($event)"/>
+</li>
+</ul>
+
+<app-taskcomponent [parentData]="selectedUser.name"></app-taskcomponent> -->
+</main>

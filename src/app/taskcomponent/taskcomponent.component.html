@@ -1,0 +1,21 @@
+<div *ngIf="isAddingTask">
+     <app-add-task [userId]="userId" (response)="response($event)" ></app-add-task> <!--(add)="onAddTask($event)" -->
+</div>
+
+
+
+<section id="tasks">
+<header>
+    <h2>{{parentData}}'s Tasks</h2>
+    <menu>
+        <button (click)="OnStartAddTask()">Add Task</button>
+    </menu>
+</header>
+
+<ul>
+    <li *ngFor="let task of selectedUserTask">
+        <app-tasks [task]="task"></app-tasks>
+    </li>
+</ul>
+</section>
+
